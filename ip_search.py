@@ -108,7 +108,7 @@ start_time = datetime.datetime.now()
 print('开始处理时间：', time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 with open('key.txt', 'r') as f:
     key = f.read()
-ip_data = pd.read_excel(ip_file, converters={'ip':str})
+ip_data = pd.read_excel(ip_file, converters={'ip':str}).drop_duplicates().dropna(subset=['ip'])
 ip_list = list(ip_data.loc[ip_data['city'].isnull(), 'ip'])
 i = 0
 
